@@ -1,4 +1,5 @@
 import './NavBar.css'
+import CarWidget from '../CarWidget/CarWidget'
 
 const NavBar = () => {
     return (
@@ -9,6 +10,7 @@ const NavBar = () => {
                 <button>Accesorios</button>
                 <button>Juguetes</button>
             </div>
+            <CarWidget />
         </nav>
     )
 }
