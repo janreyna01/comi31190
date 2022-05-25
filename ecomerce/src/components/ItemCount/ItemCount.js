@@ -4,7 +4,9 @@ const ItemCount = () => {
     const [count, setCount] = useState(0)
 
     const decrement = () => {
-        setCount((count) => count - 1)
+        if (count > 0) {
+            setCount((count) => count - 1) 
+        }  
     }
 
     const increment = () => {
@@ -12,9 +14,9 @@ const ItemCount = () => {
     }
     return (
         <div style={{ display: 'flex' }}>
-            <button onclick={decrement}>-</button>
+            <button onClick={decrement}>-</button>
             <h1>{count}</h1>
-            <button onclick={increment}>+</button>
+            <button onClick={increment}>+</button>
         </div>
     )
 }
