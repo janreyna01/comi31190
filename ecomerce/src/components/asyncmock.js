@@ -1,4 +1,4 @@
-const productos = [
+const products = [
     {id:'1', nombre:'body', precio:'500', categoria:'ropa', imagen:'', stock:'10', descripcion:'body super comodo'},
     {id:'2', nombre:'chupete', precio:'300', categoria:'accesorios', imagen:'', stock:'10', descripcion:'chupete avent'},
     {id:'3', nombre:'ranita', precio:'600', categoria:'ropa', imagen:'', stock:'10', descripcion:'ranita de algodon'},
@@ -10,10 +10,10 @@ const productos = [
     {id:'9', nombre:'tractor', precio:'1500', categoria:'juguete', imagen:'', stock:'9', descripcion:'tractor de plastico'},
 ]
 
-export const getproductos = () => {
-    return new promise((resolve) => {
+export const getProducts = () => {
+    return new Promise((resolve) => {
         setTimeout(() => {
-            resolve(productos)
+            resolve(products)
         }, 2000)
     })
 }
