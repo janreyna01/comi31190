@@ -1,7 +1,11 @@
-const Item = ({nombre, precio, imagen, descripcion}) => {
+import './Item.css'
+const Item = ({ nombre, precio, imagen, descripcion }) => {
     return (
-        <h1>{nombre}</h1>
-        
+        <div className="card">
+            <h1>{nombre}</h1>
+        </div>
+
+
     )
 }
 
