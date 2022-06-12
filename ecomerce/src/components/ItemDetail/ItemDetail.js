@@ -1,10 +1,10 @@
-const ItemDetail = ({title, imagen, precio, descripcion}) => {
+const ItemDetail = ({name, image, price, description}) => {
     return(
         <div>
-            <h1>{title}</h1>
-            <img>{imagen}</img>
-            <h2>{precio}</h2>
-            <p>{descripcion}</p>
+            <h1>{name}</h1>
+            <img>{image}</img>
+            <h2>{price}</h2>
+            <p>{description}</p>
         </div>
         
     )
