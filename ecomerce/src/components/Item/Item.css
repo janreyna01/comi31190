@@ -1,5 +1,29 @@
 .card{
-    background-color: blue;
+    background-color: #6efa93;
+    width: 300px;
+    text-align: center;
+    border: 1px solid green;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.titulocard{
+    font-size: 40px;
+}
+
+.imagencard{
     width: 100px;
-    font-size: ;
+    text-align: center;
+}
+
+.preciocard{
+    font-size: 30px;
+}
+
+.verdetallecard{
+    font-size: 15px;
+    border-radius: 10%;
+    background-color: gainsboro;
+    border: 1px solid green;
+    
 }
