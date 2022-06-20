@@ -4,15 +4,18 @@ import ItemLIstContainer from './components/ItemListContainer/ItemListContainer'
 //import ItemCount from './components/ItemCount/ItemCount';
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import React, {createContext} from 'react';
 
 function App() {
   //const [page, setPage] = useState('list')
+  const context = createContext()
 
   return (
     <div className="App">
       <header className="App-header">
         {/*<ItemCount />*/}
       </header>
+      <context.Provider value={123}>
       <BrowserRouter>
         <NavBar />
         <Routes>
@@ -23,7 +26,7 @@ function App() {
           <Route path='*' element={<h1>PAGE NOT FOUND 404</h1>} />
         </Routes>
       </BrowserRouter>
-
+      </context.Provider>
     </div>
   );
 }
