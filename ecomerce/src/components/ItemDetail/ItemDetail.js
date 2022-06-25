@@ -1,40 +1,17 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
+import CartContext from '../../Context/CartContext'
+import ItemCount from '../ItemCount/ItemCount'
 
+const ItemDetail = ({ id, name, image, category, description, price, stock }) => {
 
-const ButtonCount = ({ onConfirm, stock, initial = 0 }) => {
-    const [count, setCount] = useState(initial)
-
-    const increment = () => {
-        if(count < stock) {
-            setCount(count + 1)
-        }
-
-    }
-
-    const decrement = () => {
-            setCount(count - 1)
-
-    }
-
-    return (
-        <div>
-            <p>{count}</p>
-            <button onClick={decrement}>-</button>
-            <button onClick={increment}>+</button>
-            <button onClick={() => onConfirm(count)}>Agregar al carrito</button>
-        </div>
-    )
-}
-
-const ItemDetail = ({id, name, image, category, description, price, stock }) => {
-    
     const [quantity, setQuantity] = useState(0)
 
-    
+    const { addItem, getProduct } = useContext(CartContext)
 
-    const handleOnAdd = (count) => {
-        setQuantity(count)
+    const handleOnAdd = (quantity) => {
+        setQuantity(quantity)
+        addItem({ id, name, price, quantity })
     }
 
     return (
@@ -57,9 +34,11 @@ const ItemDetail = ({id, name, image, category, description, price, stock }) => 
                 <p>
                     Precio:{price}
                 </p>
-            </section>           
-            <footer >
-                { quantity > 0  ? <Link to='/cart'>Finalizar compra</Link> : <ButtonCount    stock={stock} onConfirm={handleOnAdd}/>}
+            </section>
+            <footer>
+                {quantity > 0
+                    ? <Link to='/cart'>Finalizar compra</Link>
+                    : <ItemCount stock={stock} onAdd={handleOnAdd} initial={getProduct(id)?.quantity} />}
             </footer>
         </article>
     )
