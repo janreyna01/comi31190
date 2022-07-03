@@ -7,37 +7,46 @@ import './ItemListContainer.css'
 
 const ItemLIstContainer = (props) => {
     const [products, setProducts] = useState([])
-
-    const {categoryId} = useParams()
-
-    const onResize = () => console.log("cambio de tamaño")
-
-    useEffect( () => {
-        window.addEventListener('resize', onResize)
-
-        return () => {
-            window.removeEventListener('resize', onResize)
-        }
-    },[])
+    const [loading, setLoading] = useState(true)
+    const [title, setTitle] = useState('')
+    const { categoryId } = useParams()
 
     useEffect(() => {
+        setLoading(true)
         if (!categoryId) {
             getProducts().then(response => {
                 setProducts(response)
+            }).finally(() => {
+                setLoading(false)
             })
+
         } else {
-           getProductsByCategory(categoryId).then(response => {
-               setProducts(response)
-           }) 
+            getProductsByCategory(categoryId).then(response => {
+                setProducts(response)
+            }).finally(() => {
+                setLoading(false)
+            })
         }
-        
+
     }, [categoryId])
 
+    useEffect(() => {
+        setTimeout(() => {
+            setTitle('Cambie titulo')
+        }, 3000)
+    })
+
+    if(loading) {
+        return <h1>Loading...</h1>
+    }
+
     return (
-    
-    <div className='itemlistcontainer'>
+
+        <div className='itemlistcontainer'>
             <h1 className='tituloitemlistcontainer'>{props.greeting}</h1>
-            <ItemList products={products}/>
+            {
+               products.length > 0 ? <ItemList products={products}/> : <h2>NO hay Productos</h2> 
+            }
         </div>
     )
 }

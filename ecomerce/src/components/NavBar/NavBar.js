@@ -1,20 +1,27 @@
-import './NavBar.css'
+import { useContext } from 'react'
 import CarWidget from '../CarWidget/CarWidget'
-import { Link } from 'react-router-dom'
+import './NavBar.css'
+import { Link, NavLink } from 'react-router-dom'
+import CartContext from '../../Context/CartContext'
+
 
 const NavBar = () => {
+
+    const { getQuantity } = useContext(CartContext)
+
+    const quantity = getQuantity()
+
     return (
         <nav>
-            <div className="div1">
-            <h1 className="titulo">Bebe Shops</h1>
-            <CarWidget className="carrito" />   
-            </div>
+            <Link to='/' className="div1">
+            <h1 className="titulo">Bebe Shops</h1> 
+            </Link>
             <div className="about">
-                <Link to='/about'>About</Link>
-                <Link to='/category/ropa'>Ropa</Link>
-                <Link to='/category/juguetes'>Juguetes</Link>
-                <Link to='/category/accesorios'>Accesorios</Link>
+                <NavLink to='/category/ropa'>Ropa</NavLink>
+                <NavLink to='/category/juguetes'>Juguetes</NavLink>
+                <NavLink to='/category/accesorios'>Accesorios</NavLink>
             </div>
+            {quantity > 0 && <CarWidget />}
         </nav>
     )
 }
